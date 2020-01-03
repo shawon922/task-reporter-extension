@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "Task Reporter",
+  "version": "0.0.1",
+  "description": "Send task start-end report to chatwork.",
+  "icons": {
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "author": "Oceanize Bangladesh",
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "img/icon16.png"
+    },
+    "default_title": "Asana task reporter",
+    "default_popup": "popup.html"
+  },
+  "omnibox": {
+    "keyword": "asana task reporter"
+  },
+  "permissions": [
+    "cookies",
+    "tabs",
+    "*://*.asana.com/"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.asana.com/"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://maxcdn.bootstrapcdn.com; object-src 'self'",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+A"
+      }
+    }
+  }
+}
